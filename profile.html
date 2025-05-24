@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Travel With Us</title>
+    <script src="./jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background: #333;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            height: 25px;
+            text-align: center;
+            padding-bottom: 0px;
+        }
+        .container {
+            width: 50%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        .profile-header {
+            text-align: center;
+        }
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #333;
+        }
+        .edit-btn {
+            background: black;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .edit-btn:hover {
+            background: #333;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .tab-btn {
+            background: black;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+        .tab-btn:hover{
+            background: #333;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background: #fff;
+            margin-top: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+        }
+        .info {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .edit-section {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+        }
+        .input-field {
+            width: 80%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .save-btn {
+            background: black;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .save-btn:hover {
+            background: #333;
+        }
+  </style>
+</head>
+<body>
+    <header>
+        <h2>Travel With Us</h2>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./tour.html">Tour packages</a></li>
+                <li><a href="./profile.html">Profile</a></li>
+                <li><a href="./aboutus.html">About Us</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="profile-header">
+            <img src="./human.jfif" alt="Profile Image" class="profile-img">
+            <h2 id="username">kishan</h2>
+            <p id="useremail">kishan26@gamil.com</p>
+            <p id="userbio">Travel lover & adventure seeker.</p>
+            <button class="edit-btn" id="editProfile">Edit Profile</button>
+            
+            <div class="edit-section">
+                <input type="text" id="newName" class="input-field" placeholder="Enter new name">
+                <input type="email" id="newEmail" class="input-field" placeholder="Enter new email">
+                <input type="text" id="newBio" class="input-field" placeholder="Enter new bio">
+                <br>
+                <button class="save-btn" id="saveProfile">Save</button>
+            </div>
+        </div>
+    
+        <div class="tabs">
+            <button class="tab-btn" id="history" data-tab="history">Travel History</button>
+            <button class="tab-btn" id="wishlist" data-tab="wishlist">Wishlist</button>
+        </div>
+    
+        <div id="thistory" class="tab-content">
+            <h3>Travel History</h3>
+            <ul>
+                <li>Dwarka, Gujarat</li>
+                <li>Manali, Himachal Pradesh</li>
+                <li>Ooty, Tamil Nadu</li>
+                <li>Jaipur, Rajasthan</li>
+                <li>Rishikesh, Uttarakhand</li>
+            </ul>
+        </div>
+    
+        <div id="twishlist" class="tab-content">
+            <h3>Wishlist</h3>
+            <ul>
+                <li>Leh-Ladakh, Jammu & Kashmir</li>
+                <li>Hampi, Karnataka</li>
+                <li>Pondicherry</li>
+                <li>Varanasi, Uttar Pradesh</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        $(document).ready(function(){
+            $("#editProfile").click(function(){
+                $(".edit-section").slideToggle(500);
+            });
+    
+            $("#saveProfile").click(function(){
+                let newName = $("#newName").val();
+                let newEmail = $("#newEmail").val();
+                let newBio = $("#newBio").val();
+    
+                if(newName) $("#username").text(newName);
+                if(newEmail) $("#useremail").text(newEmail);
+                if(newBio) $("#userbio").text(newBio);
+    
+                $(".edit-section").slideUp();
+            });
+
+            $('#history').click(function(){
+                $("#thistory").slideToggle();
+            })
+
+            $('#wishlist').click(function(){
+                $("#twishlist").slideToggle();
+            })
+        });
+    </script>
+    <footer>
+        <p>&copy; 2025 Travel With Us. All rights reserved.</p>
+    </footer>
+    </body>
+    </html>
+    
